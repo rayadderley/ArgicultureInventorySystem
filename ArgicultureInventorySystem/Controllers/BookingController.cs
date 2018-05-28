@@ -420,7 +420,6 @@ namespace ArgicultureInventorySystem.Controllers
         [HttpPost]
         public ActionResult Create(UcBookingStockViewModel ucBooking)
         {
-            // TODO: Check if the stock selected is the same as previous one in the list or not. If same, deny booking.
             
             var hold = ucBooking;
 

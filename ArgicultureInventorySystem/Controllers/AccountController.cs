@@ -210,6 +210,23 @@ namespace ArgicultureInventorySystem.Controllers
             return View();
         }
 
+        // Check IdNumber Unique or not
+        [HttpPost]
+        [AllowAnonymous]
+        public bool IsIdNumberExist(string IdNumber)
+        {
+            var validateIdNumber = _context.Users.FirstOrDefault(b => b.IdNumber == IdNumber);
+
+            if (validateIdNumber != null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         [AllowAnonymous]
         private void LoadDeptFact()
         {
@@ -234,6 +251,12 @@ namespace ArgicultureInventorySystem.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             LoadDeptFact();
+
+            if (IsIdNumberExist(model.IdNumber) == false)
+            {
+                ModelState.AddModelError("", "ID Number already already exists.");
+                return View(model);
+            }
 
             if (ModelState.IsValid)
             {

@@ -70,6 +70,8 @@ namespace ArgicultureInventorySystem.Models
     public class RegisterViewModel
     {
         [Required]
+        //[Remote("IsIdNumberExist", "Account")]
+        //[RegularExpression(@"(\S)+", ErrorMessage = "ID Number already already exists")]
         [Display(Name = "ID Number")]
         public string IdNumber { get; set; }
 
